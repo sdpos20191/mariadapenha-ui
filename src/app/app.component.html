@@ -1,2 +1,23 @@
-<h1>Hello!</h1>
-<router-outlet></router-outlet>
+<div style="text-align:center">
+    <h1>{{texto}}</h1>
+</div>
+
+<agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+ 
+    <agm-marker 
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+        
+    <agm-info-window>
+        <strong>Ocorrência reportada</strong>
+    </agm-info-window>
+      
+    </agm-marker>
+
+</agm-map>
+
